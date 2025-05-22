@@ -44,17 +44,17 @@ cp .env.example .env
 
 # Edit .env file with your settings
 # Start the server
-go run main.go
+go run cmd/clamav/main.go
 ```
 
 ### Building
 
 ```bash
 # Build binary
-go build -o clamav-rest-api
+go build -o api ./cmd/clamav
 
 # Run binary
-./clamav-rest-api
+./api
 ```
 
 ## Configuration
