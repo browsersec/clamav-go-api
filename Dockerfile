@@ -40,6 +40,19 @@ COPY --from=builder /app/main .
 # Copy .env file if it exists
 COPY --from=builder /app/.env* ./
 
+# Set default environment variables
+ENV NODE_ENV=production \
+    CLAMD_IP=clamd \
+    APP_FORM_KEY=FILES \
+    APP_PORT=3000 \
+    APP_MAX_FILE_SIZE=26214400 \
+    APP_MAX_FILES_NUMBER=4 \
+    CLAMD_PORT=3310 \
+    CLAMD_TIMEOUT=60000 \
+    APP_MORGAN_LOG_FORMAT=combined \
+    REDIS_URL=redis://redis:6379 \
+    JOB_EXPIRATION=3600
+
 # Create non-root user
 RUN addgroup -g 1001 -S appuser && \
     adduser -S -D -H -u 1001 -h /root -s /sbin/nologin -G appuser appuser
