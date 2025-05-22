@@ -1,0 +1,110 @@
+{
+  "info": {
+    "name": "ClamAV API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Scan Files",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "FILES",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/scan"
+      }
+    },
+    {
+      "name": "Scan Files Async",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "FILES",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/scan/async"
+      }
+    },
+    {
+      "name": "Scan Files Async via Redis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "FILES",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/scan/async/redis"
+      }
+    },
+    {
+      "name": "Get Job Status",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/jobs/{job_id}",
+        "variable": [
+          {
+            "key": "job_id",
+            "value": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "Get Version",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/version"
+      }
+    },
+    {
+      "name": "Get DB Signatures",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/dbsignatures"
+      }
+    }
+  ]
+}
