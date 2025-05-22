@@ -1,6 +1,5 @@
 # ClamAV REST API - Go Implementation
 
-This is a Go/Gin-based implementation of the original Node.js ClamAV REST API. It provides the same functionality with improved performance and lower memory usage.
 
 ## Features
 
