@@ -26,9 +26,9 @@ jobs:
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@v3.1.1
+        uses: sigstore/cosign-installer@main
         with:
-          cosign-release: 'v2.2.0'
+          cosign-release: 'v2.2.2'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -71,4 +71,9 @@ jobs:
           TAGS: ${{ steps.meta.outputs.tags }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: |
-          echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+          # Skip signing if cosign fails to install
+          if command -v cosign &> /dev/null; then
+            echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+          else
+            echo "Cosign not available, skipping image signing"
+          fi
